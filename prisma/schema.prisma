@@ -18,6 +18,7 @@ model Lanlord {
   lastName    String?
   mobileNo   String? @unique
   property Property[]
+  renter Renter[]
 }
 
 
