@@ -10,7 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// put your model here 
+// Landlord Entity
+
+model Lanlord {
+  id      Int      @id @default(autoincrement())
+  firstName   String?   
+  lastName    String?
+  mobileNo   String? @unique
+  property Property[]
+}
 
 
 
