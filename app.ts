@@ -11,18 +11,25 @@ SampleRepo.createAllData()
 
 app.get('/contracts', async (req, res) => {
     const posts = await prisma.contract.findMany({
-      include: { landLord: true },
+      include: { landLord: {
+        include : {
+          property: true 
+        }
+      } },
+
     })
     res.json(posts)
   })
 
   app.post(`/addContract`, async (req, res) => {
-    const { title, content, mobile } = req.body
+    const { title, content, renterName, mobile, size, type } = req.body
     const result = await prisma.contract.create({
       data: {
         title,
+        renterName,
         content,
         landLord: { connect: { mobileNo:  mobile} },
+        
       },
     })
     res.json(result)

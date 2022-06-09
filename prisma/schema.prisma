@@ -13,6 +13,7 @@ datasource db {
 
 model Contract {
   id        Int     @id @default(autoincrement())
+  renterName  String?
   title     String
   content   String?
   landLord    LandLord?   @relation(fields: [landLordId], references: [id])
@@ -24,4 +25,15 @@ model LandLord {
   mobileNo String?  @unique
   name  String?
   contacts Contract[]
+  property  Property[]
+}
+
+
+model Property {
+  id    Int     @id @default(autoincrement())
+  type  String?
+  size  String?
+  landLord    LandLord?   @relation(fields: [landLordId], references: [id])
+  landLordId  Int?
+  
 }
